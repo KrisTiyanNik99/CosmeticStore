@@ -1,7 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using CosmeticStore.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add configuration
+var configuration = builder.Configuration;
+
+// Configure DbContext
+builder.Services.AddDbContext<BeautyCareDbContext>(options =>
+    options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
+                     new MySqlServerVersion(new Version(8, 0, 21))));
 
 var app = builder.Build();
 

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CosmeticStore.Models
 {
-    public class Products
+    public class Product
     {
         public int Id { get; set; }
 
@@ -61,7 +61,7 @@ namespace CosmeticStore.Models
         }
 
         // Constructor
-        public Products()
+        public Product()
         {
             // Initialize default values or perform other initialization tasks
             _promotionalPrice = 0.0m; // Example initialization

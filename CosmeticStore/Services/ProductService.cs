@@ -12,7 +12,7 @@ namespace CosmeticStore.Services
             _context = context;
         }
 
-        public async Task<List<Products>> GetAllProductsAsync()
+        public async Task<List<Product>> GetAllProductsAsync()
         {
             return await _context.Products.ToListAsync();
         }

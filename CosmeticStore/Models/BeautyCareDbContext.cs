@@ -10,21 +10,21 @@ namespace CosmeticStore.Models
         {
         }
         
-        public DbSet<Products> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             // Example: Configure Products entity
-            modelBuilder.Entity<Products>()
+            modelBuilder.Entity<Product>()
                 .Property(p => p.Name)
                 .IsRequired();
 
             // Example: Seed initial data
-            modelBuilder.Entity<Products>().HasData(
-                new Products { Id = 1, Name = "Product 1", Price = 10.00m },
-                new Products { Id = 2, Name = "Product 2", Price = 15.00m }
+            modelBuilder.Entity<Product>().HasData(
+                new Product { Id = 1, Name = "Product 1", Price = 10.00m },
+                new Product { Id = 2, Name = "Product 2", Price = 15.00m }
             );
         }
     }

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using CosmeticStore.Models;
 using Microsoft.AspNetCore.Identity;
+using CosmeticStore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,9 @@ builder.Services.AddIdentityCore<CustomUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BeautyCareDbContext>()
     .AddDefaultTokenProviders();
+
+// Register ProductService
+builder.Services.AddScoped<ProductService>();
 
 var app = builder.Build();
 

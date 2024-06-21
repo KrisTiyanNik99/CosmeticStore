@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace CosmeticStore.Models
 {
-    public class BeautyCareDbContext : DbContext
+    public class BeautyCareDbContext : IdentityDbContext<CustomUser>
     {
         public BeautyCareDbContext(DbContextOptions<BeautyCareDbContext> options)
     : base(options)

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using CosmeticStore.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,13 @@ var configuration = builder.Configuration;
 builder.Services.AddDbContext<BeautyCareDbContext>(options =>
     options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
                      new MySqlServerVersion(new Version(8, 0, 21))));
+
+
+//Add Identity
+builder.Services.AddIdentityCore<CustomUser>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<BeautyCareDbContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
@@ -29,6 +37,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

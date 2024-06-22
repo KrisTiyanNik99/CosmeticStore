@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CosmeticStore.Models
+namespace BeautyCareStore.Models
 {
     public class Product
     {

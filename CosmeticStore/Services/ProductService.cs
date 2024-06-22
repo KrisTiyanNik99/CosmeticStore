@@ -1,7 +1,7 @@
-﻿using CosmeticStore.Models;
+﻿using BeautyCareStore.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CosmeticStore.Services
+namespace BeautyCareStore.Services
 {
     public class ProductService
     {

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using CosmeticStore.Models;
+using BeautyCareStore.Models;
 using Microsoft.AspNetCore.Identity;
-using CosmeticStore.Services;
+using BeautyCareStore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,9 +1,9 @@
-using CosmeticStore.Models;
-using CosmeticStore.Services;
+using BeautyCareStore.Models;
+using BeautyCareStore.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace CosmeticStore.Controllers
+namespace BeautyCareStore.Controllers
 {
     public class HomeController : Controller
     {

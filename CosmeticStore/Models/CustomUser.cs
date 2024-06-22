@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace CosmeticStore.Models
+namespace BeautyCareStore.Models
 {
     public class CustomUser : IdentityUser
     {

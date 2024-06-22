@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CosmeticStore.Models
+namespace BeautyCareStore.Models
 {
     public class BeautyCareDbContext : IdentityDbContext<CustomUser>
     {

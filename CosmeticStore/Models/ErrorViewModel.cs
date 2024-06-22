@@ -1,4 +1,4 @@
-namespace CosmeticStore.Models
+namespace BeautyCareStore.Models
 {
     public class ErrorViewModel
     {

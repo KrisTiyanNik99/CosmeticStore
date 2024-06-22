@@ -23,10 +23,21 @@ builder.Services.AddIdentityCore<CustomUser>()
     .AddEntityFrameworkStores<BeautyCareDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IAdminUserService, AdminUserService>();
+
 // Register ProductService
 builder.Services.AddScoped<ProductService>();
 
 var app = builder.Build();
+
+// Seed admin user during application startup
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var adminUserService = services.GetRequiredService<IAdminUserService>();
+
+    await adminUserService.SeedAdminUserAsync(); // Ensure admin user is seeded
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

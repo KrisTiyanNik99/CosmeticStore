@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BeautyCareStore.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -239,8 +239,8 @@ namespace BeautyCareStore.Migrations
                 columns: new[] { "Id", "Availability", "Category", "CreatedAt", "Description", "ImageUrl", "Ingredients", "IsFeatured", "Name", "NumberOfReviews", "Price", "PromotionalPrice", "Rating", "UpdatedAt", "Weight" },
                 values: new object[,]
                 {
-                    { 1, false, "", new DateTime(2024, 6, 21, 18, 36, 12, 625, DateTimeKind.Utc).AddTicks(9860), "", "", "", false, "Product 1", 0, 10.00m, 0.0m, 0.0, new DateTime(2024, 6, 21, 18, 36, 12, 625, DateTimeKind.Utc).AddTicks(9862), 0.0 },
-                    { 2, false, "", new DateTime(2024, 6, 21, 18, 36, 12, 625, DateTimeKind.Utc).AddTicks(9864), "", "", "", false, "Product 2", 0, 15.00m, 0.0m, 0.0, new DateTime(2024, 6, 21, 18, 36, 12, 625, DateTimeKind.Utc).AddTicks(9865), 0.0 }
+                    { 1, false, "", new DateTime(2024, 6, 22, 20, 4, 27, 543, DateTimeKind.Utc).AddTicks(4134), "", "", "", false, "Product 1", 0, 10.00m, 0.0m, 0.0, new DateTime(2024, 6, 22, 20, 4, 27, 543, DateTimeKind.Utc).AddTicks(4135), 0.0 },
+                    { 2, false, "", new DateTime(2024, 6, 22, 20, 4, 27, 543, DateTimeKind.Utc).AddTicks(4138), "", "", "", false, "Product 2", 0, 15.00m, 0.0m, 0.0, new DateTime(2024, 6, 22, 20, 4, 27, 543, DateTimeKind.Utc).AddTicks(4138), 0.0 }
                 });
 
             migrationBuilder.CreateIndex(

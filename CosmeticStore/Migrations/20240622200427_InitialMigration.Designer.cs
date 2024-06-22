@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautyCareStore.Migrations
 {
     [DbContext(typeof(BeautyCareDbContext))]
-    [Migration("20240621183612_Initial")]
-    partial class Initial
+    [Migration("20240622200427_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,7 +97,7 @@ namespace BeautyCareStore.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("BeautyCareStore.Models.Products", b =>
+            modelBuilder.Entity("BeautyCareStore.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,7 +162,7 @@ namespace BeautyCareStore.Migrations
                             Id = 1,
                             Availability = false,
                             Category = "",
-                            CreatedAt = new DateTime(2024, 6, 21, 18, 36, 12, 625, DateTimeKind.Utc).AddTicks(9860),
+                            CreatedAt = new DateTime(2024, 6, 22, 20, 4, 27, 543, DateTimeKind.Utc).AddTicks(4134),
                             Description = "",
                             ImageUrl = "",
                             Ingredients = "",
@@ -172,7 +172,7 @@ namespace BeautyCareStore.Migrations
                             Price = 10.00m,
                             PromotionalPrice = 0.0m,
                             Rating = 0.0,
-                            UpdatedAt = new DateTime(2024, 6, 21, 18, 36, 12, 625, DateTimeKind.Utc).AddTicks(9862),
+                            UpdatedAt = new DateTime(2024, 6, 22, 20, 4, 27, 543, DateTimeKind.Utc).AddTicks(4135),
                             Weight = 0.0
                         },
                         new
@@ -180,7 +180,7 @@ namespace BeautyCareStore.Migrations
                             Id = 2,
                             Availability = false,
                             Category = "",
-                            CreatedAt = new DateTime(2024, 6, 21, 18, 36, 12, 625, DateTimeKind.Utc).AddTicks(9864),
+                            CreatedAt = new DateTime(2024, 6, 22, 20, 4, 27, 543, DateTimeKind.Utc).AddTicks(4138),
                             Description = "",
                             ImageUrl = "",
                             Ingredients = "",
@@ -190,7 +190,7 @@ namespace BeautyCareStore.Migrations
                             Price = 15.00m,
                             PromotionalPrice = 0.0m,
                             Rating = 0.0,
-                            UpdatedAt = new DateTime(2024, 6, 21, 18, 36, 12, 625, DateTimeKind.Utc).AddTicks(9865),
+                            UpdatedAt = new DateTime(2024, 6, 22, 20, 4, 27, 543, DateTimeKind.Utc).AddTicks(4138),
                             Weight = 0.0
                         });
                 });

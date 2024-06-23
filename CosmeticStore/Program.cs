@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using BeautyCareStore.Models;
 using Microsoft.AspNetCore.Identity;
 using BeautyCareStore.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +19,37 @@ builder.Services.AddDbContext<BeautyCareDbContext>(options =>
 
 
 //Add Identity
-builder.Services.AddIdentityCore<CustomUser>()
+builder.Services.AddIdentityCore<CustomUser>(options =>
+{
+    // Configure password options here
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 6;
+})
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BeautyCareDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
+{
+    options.LoginPath = "/Admin"; // Path to the login page
+    //options.AccessDeniedPath = "/Account/AccessDenied"; // Path to the access denied page
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+    options.SlidingExpiration = true;
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+});
 
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();
 
@@ -36,7 +64,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var adminUserService = services.GetRequiredService<IAdminUserService>();
 
-    await adminUserService.SeedAdminUserAsync(); // Ensure admin user is seeded
+    await adminUserService.SeedAdminUserAsync();
 }
 
 // Configure the HTTP request pipeline.
@@ -58,5 +86,10 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "admin",
+    pattern: "admin/{action=Index}/{id?}",
+    defaults: new { controller = "Account" });
 
 app.Run();

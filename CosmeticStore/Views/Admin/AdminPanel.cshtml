@@ -1,6 +1,54 @@
-﻿@{
+﻿@model IEnumerable<Product>
+@{
     ViewData["Title"] = "Admin Panel";
 }
 
 <h2>Admin Panel</h2>
 <p>Welcome to the admin panel!</p>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <h2 class="card-title text-center">Admin Panel Login</h2>
+                        <label>Product controls:</label>
+                        <br />
+                        <div class="form-group d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success" style="width: 200px; margin-right: 10px;">Add</button>
+                            <button type="submit" class="btn btn-warning" style="width: 200px; margin-right: 10px;">Edit</button>
+                            <button type="submit" class="btn btn-danger" style="width: 200px;">Delete</button>
+                        </div>
+                        <div>
+                            <h1>Products</h1>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger mt-3">
+        <!-- Adjust margin-top as needed -->
+        @Html.ValidationSummary()
+    </div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

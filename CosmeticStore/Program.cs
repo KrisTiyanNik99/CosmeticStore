@@ -19,7 +19,7 @@ builder.Services.AddDbContext<BeautyCareDbContext>(options =>
 
 
 //Add Identity
-builder.Services.AddIdentityCore<CustomUser>(options =>
+builder.Services.AddIdentity<CustomUser, IdentityRole>(options =>
 {
     // Configure password options here
     options.Password.RequireDigit = false;
@@ -30,6 +30,7 @@ builder.Services.AddIdentityCore<CustomUser>(options =>
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BeautyCareDbContext>()
+    .AddSignInManager<SignInManager<CustomUser>>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(options =>
@@ -40,8 +41,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie(options =>
 {
-    options.LoginPath = "/Admin"; // Path to the login page
-    //options.AccessDeniedPath = "/Account/AccessDenied"; // Path to the access denied page
+    options.LoginPath = "/Account/Index"; // Path to the login page
+    options.AccessDeniedPath = "/Account/AccessDenied"; // Path to the access denied page
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     options.SlidingExpiration = true;
 });

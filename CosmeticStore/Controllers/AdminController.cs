@@ -1,16 +1,30 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿    using BeautyCareStore.Services;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
 
-namespace BeautyCareStore.Controllers
-{
-    [Authorize(Policy = "AdminOnly")]
-    public class AdminController : Controller
+    namespace BeautyCareStore.Controllers
     {
-        public IActionResult AdminPanel()
+        public class AdminController : Controller
         {
-            return View();
-        }
+            private readonly ILogger<HomeController> _logger;
+            private readonly ProductService _productService;
 
-        // Add other admin-related actions here
+            public AdminController(ILogger<HomeController> logger, ProductService productService)
+            {
+                _logger = logger;
+                _productService = productService;
+            }
+
+            [Authorize(Roles = "Admin")]
+            public IActionResult Index()
+            {
+                return View();
+            }
+
+            public async Task<IActionResult> AdminPanel()
+            {
+                var products = await _productService.GetAllProductsAsync();
+                return View();
+            }
+        }
     }
-}

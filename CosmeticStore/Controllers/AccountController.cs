@@ -7,10 +7,12 @@ namespace BeautyCareStore.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<CustomUser> _userManager;
+        private readonly SignInManager<CustomUser> _signInManager;
 
-        public AccountController(UserManager<CustomUser> userManager)
+        public AccountController(UserManager<CustomUser> userManager, SignInManager<CustomUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [Route("admin")]
@@ -52,7 +54,7 @@ namespace BeautyCareStore.Controllers
 
                 if (isAdmin)
                 {
-                    // User is an admin, redirect to the admin panel
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("AdminPanel", "Admin");
                 }
                 else
@@ -71,7 +73,7 @@ namespace BeautyCareStore.Controllers
         }
         public async Task<IActionResult> Logout()
         {
-            //await _signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index");
         }
     }

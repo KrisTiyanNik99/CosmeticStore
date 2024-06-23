@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary()
+    </div>
+}
+
+<h2>Admin Panel Validation</h2>
+
+@model string
+
+<form asp-action="ValidatePrivileges" method="post">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username">
+        @if (ViewData.ModelState.ContainsKey("username"))
+        {
+            <div class="text-danger">
+                @foreach (var error in ViewData.ModelState["username"].Errors)
+                {
+                    <span>@error.ErrorMessage</span>
+
+                    <br />
+                }
+            </div>
+        }
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password">
+        @if (ViewData.ModelState.ContainsKey("password"))
+        {
+            <div class="text-danger">
+                @foreach (var error in ViewData.ModelState["password"].Errors)
+                {
+                    <span>@error.ErrorMessage</span>
+
+                    <br />
+                }
+            </div>
+        }
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

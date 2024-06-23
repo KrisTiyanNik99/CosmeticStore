@@ -18,9 +18,9 @@ namespace BeautyCareStore.Services
         {
             var adminUserName = "admin";
             var adminEmail = "admin@example.com";
-            var adminPassword = "12344321Aa+";
+            var adminPassword = "12344321+";
             var adminRoleName = "Admin";
-            var adminFirstName = " ";
+            var adminFirstName = "Administrator";
             var adminLastName = " ";
 
             // Create Admin role if it doesn't exist

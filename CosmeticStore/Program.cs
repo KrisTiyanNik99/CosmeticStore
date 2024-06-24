@@ -21,7 +21,6 @@ builder.Services.AddDbContext<BeautyCareDbContext>(options =>
 //Add Identity
 builder.Services.AddIdentity<CustomUser, IdentityRole>(options =>
 {
-    // Configure password options here
     options.Password.RequireDigit = false;
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
@@ -41,8 +40,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie(options =>
 {
-    options.LoginPath = "/Account/Index"; // Path to the login page
-    options.AccessDeniedPath = "/Account/AccessDenied"; // Path to the access denied page
+    options.LoginPath = "/Account/Index";
+    options.AccessDeniedPath = "/Account/AccessDenied";
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     options.SlidingExpiration = true;
 });

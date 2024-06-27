@@ -32,19 +32,14 @@ builder.Services.AddIdentity<CustomUser, IdentityRole>(options =>
     .AddSignInManager<SignInManager<CustomUser>>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-})
-.AddCookie(options =>
-{
-    options.LoginPath = "/Account/Index";
-    options.AccessDeniedPath = "/Account/AccessDenied";
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-    options.SlidingExpiration = true;
-});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Index";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.SlidingExpiration = true;
+    });
 
 builder.Services.AddAuthorization(options =>
 {

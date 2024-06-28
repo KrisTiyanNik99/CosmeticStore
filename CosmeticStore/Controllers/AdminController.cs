@@ -33,11 +33,21 @@ namespace BeautyCareStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _productService.AddProductAsync(product);
-                return View("AdminPanel", await _productService.GetAllProductsAsync());
+                try
+                {
+                    await _productService.AddProductAsync(product);
+                    TempData["SuccessMessage"] = "Product added successfully.";
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception or handle it appropriately
+                    TempData["ErrorMessage"] = "Failed to add product. Please try again later.";
+                }
+
+                // Reload the product list and return the view
+                return RedirectToAction("AdminPanel", await _productService.GetAllProductsAsync());
             }
-            ModelState.AddModelError(string.Empty, ModelState.ToString());
-            return View("AdminPanel");
+            return View("AdminPanel", await _productService.GetAllProductsAsync());
         }
 
         [HttpDelete]

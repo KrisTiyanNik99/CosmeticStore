@@ -16,5 +16,21 @@ namespace BeautyCareStore.Services
         {
             return await _context.Products.ToListAsync();
         }
+        public async Task AddProductAsync(Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteProductAsync(int id)
+        {
+            var products = await _context.Products.FindAsync(id);
+
+            if (products != null)
+            {
+                _context.Products.Remove(products);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+//using Microsoft.AspNetCore.Http; // Make sure to include this namespace for IFormFile
 
 namespace BeautyCareStore.Models
 {
@@ -22,8 +23,8 @@ namespace BeautyCareStore.Models
 
         public string ImageUrl { get; set; } = "";
 
-        [NotMapped] // Exclude this property from database mapping
-        public IFormFile ImageFile { get; set; }
+        //[NotMapped] // Exclude this property from database mapping
+        //public IFormFile ImageFile { get; set; }
 
         public string Ingredients { get; set; } = "";
 

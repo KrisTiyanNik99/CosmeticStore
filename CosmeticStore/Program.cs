@@ -17,7 +17,7 @@ builder.Services.AddDbContext<BeautyCareDbContext>(options =>
     options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
                      new MySqlServerVersion(new Version(8, 0, 21))));
 
-
+//to here
 //Add Identity
 builder.Services.AddIdentity<CustomUser, IdentityRole>(options =>
 {

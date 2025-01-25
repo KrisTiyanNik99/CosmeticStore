@@ -6,70 +6,98 @@ namespace BeautyCareStore.Models
 {
     public class Product
     {
-        public int Id { get; set; }
+        #region Fields
+        // Полета за продукт класа
+        private int? _id;
+        private string? _name;
+        private decimal _price;
+        private string? _description;
+        private int _category;
+        private bool _isAvailable;
+        private string? _imageUrl;
+        private DateTime _updatedAt;
+        #endregion
+
+        #region GetterAndSetters 
+        // Гетъри и сетъри за стойностите
+        public int? Id 
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
 
         [Required(ErrorMessage = "Product name is required")]
-        public string Name { get; set; }
+        public string Name
+        {
+            set 
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException(nameof(Name), "Product name cannot be null or empty.");
 
-        public string Description { get; set; } = "";
+                _name = value; 
+            }
+        }
 
         [Required(ErrorMessage = "Price is required")]
-        [Range(0.01, 10000, ErrorMessage = "Price must be between 0.01 and 10,000")]
-        public decimal Price { get; set; }
+        [Range(0.01, 10000, ErrorMessage = "Price must be between 0.01 and 10000,00")]
+        public decimal Price
+        {
+            set {
+                if (value < 0) value = 0;
+                _price = value;
+            }
+        }
 
-        public bool Availability { get; set; }
+        public string Description
+        {
+            set
+            {
+                _description = value ?? string.Empty;
+            }
+        }
 
-        public string Category { get; set; } = "";
+        public int Category
+        {
+            get { return _category; }
+            set { _category = value; }
+        }
 
-        public string ImageUrl { get; set; } = "";
+        public bool IsAvailable
+        {
+            get { return _isAvailable; }
+            set {  _isAvailable = value; }
+        }
 
-        //[NotMapped] // Exclude this property from database mapping
-        //public IFormFile ImageFile { get; set; }
-
-        public string Ingredients { get; set; } = "";
-
-        public double Weight { get; set; }
-
-        [Display(Name = "Created At")]
-        public DateTime CreatedAt { get; set; }
+        public string ImageUrl
+        {
+            get { return _imageUrl ?? string.Empty; }
+            set 
+            {
+                _imageUrl = value ?? string.Empty;
+            }
+        }
 
         [Display(Name = "Updated At")]
-        public DateTime UpdatedAt { get; set; }
-
-        public bool IsFeatured { get; set; }
-
-        // Private fields
-        private decimal _promotionalPrice;
-        private double _rating;
-        private int _numberOfReviews;
-        // Public properties for private fields (if needed)
-        public decimal PromotionalPrice
+        public DateTime UpdatedAt
         {
-            get { return _promotionalPrice; }
-            set { _promotionalPrice = value; }
+            set { _updatedAt = value; }
         }
+        #endregion
 
-        public double Rating
+        #region Constructor
+        // Конструктор
+        public Product(int? id, string name, decimal price, int category, string description,
+            bool isAvailable, string imageUrl, DateTime updatedAt) 
         {
-            get { return _rating; }
-            set { _rating = value; }
+            Id = id;
+            Name = name;
+            Price = price;
+            Category = category;
+            Description = description;
+            IsAvailable = isAvailable;
+            ImageUrl = imageUrl;
+            UpdatedAt = updatedAt;
         }
-
-        public int NumberOfReviews
-        {
-            get { return _numberOfReviews; }
-            set { _numberOfReviews = value; }
-        }
-
-        // Constructor
-        public Product()
-        {
-            // Initialize default values or perform other initialization tasks
-            _promotionalPrice = 0.0m; // Example initialization
-            _rating = 0.0;
-            _numberOfReviews = 0;
-            CreatedAt = DateTime.UtcNow;
-            UpdatedAt = DateTime.UtcNow;
-        }
+        #endregion
     }
 }
